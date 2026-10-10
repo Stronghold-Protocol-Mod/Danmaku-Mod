@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "toggles": [
+    {
+      "id": "danmaku",
+      "name": "弹幕 MOD",
+      "englishName": "Danmaku MOD",
+      "description": "视频网站式从右往左滚动的横向弹幕（docs/MOD-DANMAKU.md）",
+      "files": [
+        "danmaku"
+      ],
+      "marker": {
+        "file": "danmaku",
+        "key": "isMod"
+      }
+    }
+  ]
+}

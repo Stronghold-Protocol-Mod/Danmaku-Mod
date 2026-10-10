@@ -1,0 +1,10 @@
+--- a/public/index.html
++++ b/public/index.html
+@@ -45,6 +45,7 @@
+   <link rel="stylesheet" href="/css/screens/loadout.css" />
+   <link rel="stylesheet" href="/css/screens/stats.css" />
+   <link rel="stylesheet" href="/css/emotes.css" />
++  <link rel="stylesheet" href="/css/danmaku.css" />
+   <link rel="stylesheet" href="/css/devices.css" />
+ 
+   <script type="importmap">

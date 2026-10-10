@@ -1,0 +1,32 @@
+--- a/public/js/main.js
++++ b/public/js/main.js
+@@ -35,6 +35,7 @@
+ import { useErrorBoundary } from '../vendor/hooks.module.js';
+ import { html, UiHosts, Button, MicroLabel, closeAllDialogs } from './ui/components.js';
+ import { ConnectionBanner } from './ui/connBanner.js';
++import { ModBadge, installModState } from './ui/modBadge.js';
+ import { ToastHost, toast, toastError, describeError } from './ui/toasts.js';
+ import { net, identity, NetError } from './net.js';
+ import { store, useStore, emptyMatch, selectRoute, sessionResetNotice, isSpectating } from './store.js';
+@@ -222,6 +223,9 @@
+   net.on('replaced', () => toast(t('该身份已在其他页面登录，本页已断开'), 'warn', { ttl: 6000 }));
+   net.on('unhandledError', (err) => toastError(err));
+   net.on('room.state', onRoomState);
++  // 内容开关 (ui/modBadge.js): a data mod was switched with the in-page badge — adopt the new state; the badge then
++  // offers the reload that refetches /data/*.json.
++  installModState(net);
+   net.on('room.closed', (msg) => {
+     backToLobby();
+     const known = Object.hasOwn(CLOSE_REASON, String(msg.reason)) ? CLOSE_REASON[msg.reason] : null;
+@@ -251,7 +255,10 @@
+     const playerId = typeof msg.playerId === 'string' ? msg.playerId : null;
+     // its broadcast priority: the strip plays the highest first (ui/ticker.js enqueueTickerLines)
+     const priority = Number.isFinite(msg.priority) ? msg.priority : 0;
+-    store.set((s) => ({ ticker: [...s.ticker.slice(-(TICKER_KEEP - 1)), { id: ++seq, text, at: Date.now(), type, playerId, round: s.match?.public?.round ?? null, priority }] }));
++    // the broadcast's own parameters (`comment_shop_level_1`'s "2"…) — carried through for consumers that fill a
++    // template's `{0}`/`{1}` slots from them (a mod's rule lines, hooking this store; this file names no mod)
++    const args = Array.isArray(msg.args) ? msg.args : [];
++    store.set((s) => ({ ticker: [...s.ticker.slice(-(TICKER_KEEP - 1)), { id: ++seq, text, at: Date.now(), type, playerId, round: s.match?.public?.round ?? null, priority, args }] }));
+   });
+   net.on('m.emote', (msg) => {
+     store.set((s) => ({ emotes: [...s.emotes.slice(-(EMOTE_KEEP - 1)), { seq: ++seq, playerId: msg.playerId, id: msg.id, at: Date.now() }] }));

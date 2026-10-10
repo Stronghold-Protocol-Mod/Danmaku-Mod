@@ -1,0 +1,17 @@
+# 构建/调试残留
+.tmp-diff/
+*.log
+*.tmp
+
+# 发布产物（ZIP 由 git archive 生成、上传到 GitHub Releases，不入库）
+danmaku-mod-*.zip
+
+# 安装测试留下的备份（如果在本目录里跑过安装）
+.danmaku-mod-backup/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

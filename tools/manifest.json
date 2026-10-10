@@ -1,0 +1,119 @@
+{
+  "name": "danmaku-mod",
+  "version": "1.0.0",
+  "base": {
+    "name": "stronghold-protocol-alliance",
+    "version": "0.2.3"
+  },
+  "files": {
+    "docs/MOD-DANMAKU.md": "f86b7c19c21b0498692b04b58ffd73728c824e0ebd53fb806c2ee081aebf8da3",
+    "data/danmaku.json": "21aff4dfc9f0be8b3e3fdf4a509026ae38254bb6df2b808dd8a26508a64dc429",
+    "mod/variants/danmaku/on/danmaku.json": "21aff4dfc9f0be8b3e3fdf4a509026ae38254bb6df2b808dd8a26508a64dc429",
+    "mod/variants/danmaku/off/danmaku.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "public/css/danmaku.css": "af3e9997531e89248261738f8a0911dd33c7853bdd40ee7b30b0a18216549c34",
+    "public/js/ui/danmaku.js": "7effbfe8815ff05070c3c9ff4abba87008d049392e7b2043206d5036a3513843",
+    "public/js/ui/modBadge.js": "31a0e8f334ecb429191dcb654b74743afb259e1076a57e8399331d0d1499f5f7",
+    "server/mod/api.js": "424300ac42f61c164729e7234fc79a4bdc3389ea7d155b7baca79697e357cbcc",
+    "server/mod/toggle.js": "e2b9edcb779e4acc1e917dd763c8dbec1a0cf89cb66663f4217314365fe9259c",
+    "server/sim/content/kits/mod.js": "19f64f2e3bdbc31c4ed8dc961ea8eb36d2121aed7305ee54f975209738f1d155"
+  },
+  "patches": {
+    "public/js/store.js": {
+      "patch": "patches/public__js__store.js.diff",
+      "baseSha256": "9f836d711b630e0fdaf14641aefb061d3c1ff1851953f16c5749fcbb4e021197",
+      "resultSha256": "6438e67d86f15cc24a7c9a87c4170463805860f671bf75281cfafcf70c4eeda4",
+      "hunks": 1,
+      "added": 4,
+      "removed": 0
+    },
+    "public/js/screens/title.js": {
+      "patch": "patches/public__js__screens__title.js.diff",
+      "baseSha256": "15a0992cd05a7591ec4489ff47dc7bcebff0c3aedf4030fc1f1c3cd87b56f0eb",
+      "resultSha256": "283b96a12e049b87cbf47992ad366c6cbce4eaf6da9cf549427ab39bde09a067",
+      "hunks": 2,
+      "added": 3,
+      "removed": 0
+    },
+    "public/css/screens/title.css": {
+      "patch": "patches/public__css__screens__title.css.diff",
+      "baseSha256": "99ec3da4a2acbe91d89c4dcc6636b6dd9952b0ce25848593e171013bbc300b5b",
+      "resultSha256": "cc94c10eca6005dccb1cfaf37c5df9296a4dd2c8fb81858517e68f11b4246260",
+      "hunks": 1,
+      "added": 56,
+      "removed": 0
+    },
+    "server/http/routes.js": {
+      "patch": "patches/server__http__routes.js.diff",
+      "baseSha256": "2eef41a84821de9be5819a748e2382ec98ac378de98094fec31ab7545f73e881",
+      "resultSha256": "7beb686a2e20fd0101f3951563981fbb7517b86af0382211443636b829d2f853",
+      "hunks": 2,
+      "added": 4,
+      "removed": 0
+    },
+    "server/http/websocket.js": {
+      "patch": "patches/server__http__websocket.js.diff",
+      "baseSha256": "1f7f875cc7a25ec6b2bec56b390476795c1a94e17025c03cc035b3648ab28556",
+      "resultSha256": "a040799d5da8d427850f5daa4717bb4d0130fd63decdfcd453f38671bd001341",
+      "hunks": 1,
+      "added": 5,
+      "removed": 3
+    },
+    "server/index.js": {
+      "patch": "patches/server__index.js.diff",
+      "baseSha256": "78368f7e970960b94867a1d8fe3527b8e02f10e6c5acb03b87bc9d1caa5f0518",
+      "resultSha256": "540bcc5e34b2665a55b9b9379c422053b5ecce264829643b6e61cdd814c02544",
+      "hunks": 2,
+      "added": 6,
+      "removed": 1
+    },
+    "server/lobby.js": {
+      "patch": "patches/server__lobby.js.diff",
+      "baseSha256": "ea18a04542a43df5cbfb449c9c6dbe694bc941dc98134ce9ccb3744abecf1e61",
+      "resultSha256": "53955ad97d8241f7860b232415a785b6e9b1720c478808efd40c928797a267c9",
+      "hunks": 4,
+      "added": 22,
+      "removed": 2
+    },
+    "shared/protocol.js": {
+      "patch": "patches/shared__protocol.js.diff",
+      "baseSha256": "79a0a64ef8c1d99551f313ed386f9cd696dee8128fe77a6b20ae155da47d68a4",
+      "resultSha256": "a115fc514f49d640d01e9e3e0cd69be83e91b26170a93f5577a641d690ed9159",
+      "hunks": 1,
+      "added": 4,
+      "removed": 0
+    },
+    "public/js/main.js": {
+      "patch": "patches/public__js__main.js.diff",
+      "baseSha256": "431235fa43477a48b8bd3494ee050fcd1419a9de07d6b3c578af8d793e9b38ca",
+      "resultSha256": "39f842a65e2d7d8c60d31d33bcb74c97768b26453d119d923eb2fa16bda194b2",
+      "hunks": 3,
+      "added": 8,
+      "removed": 1
+    },
+    "public/index.html": {
+      "patch": "patches/public__index.html.diff",
+      "baseSha256": "7a420a8966a5bf613a480bff362f4612fd4ea051af9b196723e67c3c6c1d90f2",
+      "resultSha256": "0c0738418a16c85a65799865cd01f8788d1e280a61142f108f2a5eb9f350a1a3",
+      "hunks": 1,
+      "added": 1,
+      "removed": 0
+    },
+    "server/match/player/views.js": {
+      "patch": "patches/server__match__player__views.js.diff",
+      "baseSha256": "2a5d0bc0acf9f583bc037f0997b736ebc9642ffa4780b28d72966a244882d950",
+      "resultSha256": "1848e4dc649afc71a370f9b1e7d42b4b600d30f98220c2e261e42e6b427ea935",
+      "hunks": 1,
+      "added": 1,
+      "removed": 1
+    },
+    "package.json": {
+      "patch": "patches/package.json.diff",
+      "baseSha256": "14fca9cd252160abdfb0da5142ea7ab3aaa2d8d6b6909b84de36332b6f55e5a1",
+      "resultSha256": "f88573b5e07740f4eb3b25978e1f22543aad207a079cb85431dc3e7f241c6f19",
+      "hunks": 1,
+      "added": 3,
+      "removed": 0
+    }
+  },
+  "merge": {}
+}

@@ -1,0 +1,86 @@
+name: 弹幕投稿
+description: 投稿一条弹幕——新的反应类型、现有类型的新文案，或者阈值 / 颜色调整。
+title: "[弹幕]:"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你为弹幕 MOD 投稿。弹幕 MOD 是《卫戍协议：盟约》的客户端本地模组：
+        对局里发生某些事情时，屏幕右侧会滑过一行吐槽。
+
+        投稿前强烈建议先看一眼
+        [MOD-DANMAKU.md 的 §Content](https://github.com/Stronghold-Protocol-Mod/Danmaku-Mod/blob/main/payload/docs/MOD-DANMAKU.md)
+        —— 那里有两张事件表，写着「现在能对什么发弹幕」和「每条规则能读到哪些数据」（比如 `{round}`、`{dps}`）。
+
+        **不需要会写代码**：填好这张表，维护者会把它变成一条规则。会写代码的话，也可以直接改
+        `payload/data/danmaku.json` 然后提 Pull Request（步骤见
+        [README 的「投稿」一节](https://github.com/Stronghold-Protocol-Mod/Danmaku-Mod#投稿)）。
+
+        > [!important]
+        > 一张 Issue 只投稿**一条**弹幕。一次想到好几条请分开提，方便逐条讨论和合并。
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 检查清单
+      description: 在开始投稿之前，请先检查：
+      options:
+        - label: 我已看过 [MOD-DANMAKU.md 的 §Content](https://github.com/Stronghold-Protocol-Mod/Danmaku-Mod/blob/main/payload/docs/MOD-DANMAKU.md)，确认我要的类型 / 文案现在还没有。我也已在 [Issues](https://github.com/Stronghold-Protocol-Mod/Danmaku-Mod/issues?q=label%3Aenhancement) 里检索过，确认没人投稿过同样的内容。
+          required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 投稿类型
+      description: 这条投稿属于哪一类？
+      options:
+        - 新的反应类型（现在还没有的触发时机）
+        - 现有类型的新文案
+        - 调整现有类型的阈值或颜色
+        - 常驻池文案（没事发生的时候随机飘的）
+        - 其他 / 我不确定
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: 触发时机
+      description: |
+        什么时候应该发这条弹幕？说清"看什么、什么时候算达成"最好。
+        投稿新类型时请尽量具体，例如"自己一回合漏了 10 个怪"、"四名玩家同时进入作战"、"第一次上到 7 本"。
+      placeholder: |
+        例如：自己场上第一次凑齐 6 名【炎】干员的那一刻。
+        若是对局里某个具体的东西，请写清是「自己的」还是「全房间的」。
+    validations:
+      required: true
+  - type: input
+    id: lines
+    attributes:
+      label: 弹幕文案
+      description: 实际飘过屏幕的那句话。
+      placeholder: ？！区！？
+    validations:
+      required: true
+  - type: input
+    id: color
+    attributes:
+      label: 颜色（可选）
+      description: |
+        十六进制颜色，例如 `#e8c46a`。留空就用默认色。
+      placeholder: "#e8c46a"
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充说明（可选，建议）
+      description: |
+        出处、梗的来源、游戏里的截图或录屏，或者为什么觉得这样好玩——都可以写在这里。
+
+        > [!note]
+        > 上传附件时请优先用 GitHub 的附件系统，把文件粘贴或拖动到撰写区域即可。
+  - type: checkboxes
+    id: revision
+    attributes:
+      label: 最后一步
+      description: 回顾您的回答
+      options:
+        - label: 我认为上述描述已经足够清楚，开发者能据此写出这条弹幕。如果我的 Issue 没有按要求填写，可能会被无条件关闭。
+          required: true

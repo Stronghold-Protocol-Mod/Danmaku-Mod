@@ -1,0 +1,55 @@
+/* 弹幕 MOD (docs/MOD-DANMAKU.md) — the scrolling comment layer of public/js/ui/danmaku.js.
+   Comments ride fixed horizontal lanes and march right→left at a constant speed, the way a video site plays them.
+
+   The host (DanmakuHost) renders nothing at all when the mod is OFF, so every rule here is dead weight without
+   data/danmaku.json. Sizes are `rem` (theme.css: 1rem ≈ viewport width / 19.2), set inline per comment by the overlay so
+   a line crosses the screen in the same number of SECONDS at any resolution. */
+
+.dmk {
+  position: fixed;
+  inset: 0;
+  /* Above the screens' own content, below the panels / dialogs / toasts (z-index 5 and up) so a comment never covers a
+     control the player is reaching for. */
+  z-index: 4;
+  overflow: hidden;
+  /* Ambient: the layer must never swallow a click or a drag. */
+  pointer-events: none;
+  user-select: none;
+  /* A full-screen scrolling layer must not make the page under it reflow. */
+  contain: layout paint;
+}
+
+.dmk__item {
+  position: absolute;
+  left: 0;
+  white-space: nowrap;          /* the width is measured in `rem`, so the line must never wrap */
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .01em;
+  color: var(--text-hi, #e8f6f0);
+  will-change: transform;       /* promote the moving layer on its own GPU layer */
+  animation-name: dmk-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; /* hold the exit position until onAnimationEnd removes the node */
+  /* Two dark shadows keep the text legible over the battlefield as well as over a flat screen. */
+  text-shadow: 0 0 .04rem rgba(0, 0, 0, .95), 0 0 .14rem rgba(0, 0, 0, .7);
+}
+
+/* Right → left: the span enters at the right edge and leaves past the left one. translateX(-100%) is its OWN width, so
+   the travel is exactly (100vw + width) — the distance the engine timed the animation for (see danmaku.js). */
+@keyframes dmk-scroll {
+  from { transform: translate3d(100vw, 0, 0); }
+  to   { transform: translate3d(-100%, 0, 0); }
+}
+
+/* An emote sent by a player rides a lane as its picture (the mod's only player-authored comment, and it is anonymous).
+   Box, position and animation all come from the config: the overlay sizes it from `emoteRem` — the very number the
+   engine reserved the lane with — and centres it on its track, so a sticker several line heights tall bleeds the same
+   amount above and below instead of sitting low. `.eart` fills the box (css/emotes.css). */
+.dmk__item--emote { display: block; }
+
+/* Reduced motion: the host refuses to mount, and this is the belt to that suspenders. */
+@media (prefers-reduced-motion: reduce) {
+  .dmk { display: none; }
+}

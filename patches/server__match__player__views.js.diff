@@ -1,0 +1,11 @@
+--- a/server/match/player/views.js
++++ b/server/match/player/views.js
+@@ -115,7 +115,7 @@
+       ...(bossMate ? { bossMate } : {}),
+       stats: {
+         dmgDealt: Math.round(this.stats.dmgDealt), kills: this.stats.kills, leaks: this.stats.leaks, gold: this.stats.gold,
+-        refreshes: this.stats.refreshes, merges: this.stats.merges,
++        refreshes: this.stats.refreshes, buys: this.stats.buys, merges: this.stats.merges,
+       },
+     };
+   }

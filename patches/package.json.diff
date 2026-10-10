@@ -1,0 +1,12 @@
+--- a/package.json
++++ b/package.json
+@@ -30,6 +30,9 @@
+     "golden:update": "node tools/golden.mjs --update",
+     "vendor": "node tools/vendor.mjs",
+     "build-data": "node tools/build-data.mjs",
++    "mod:danmaku": "node tools/mod-toggle.mjs on --toggle danmaku",
++    "mod:danmaku:strip": "node tools/mod-toggle.mjs off --toggle danmaku",
++    "mod:danmaku:status": "node tools/mod-toggle.mjs status",
+     "assets": "node tools/vendor.mjs && node tools/fetch-assets.mjs",
+     "postinstall": "node tools/vendor.mjs",
+     "setup": "node tools/setup.mjs",
